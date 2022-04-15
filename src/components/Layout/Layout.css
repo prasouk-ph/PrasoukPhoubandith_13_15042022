@@ -10,10 +10,10 @@ body {
   color: #2c3e50;
 }
 
-.main {
+/* .main {
   display: flex;
   flex: 1;
-}
+} */
 
 .sr-only {
   border: 0 !important;

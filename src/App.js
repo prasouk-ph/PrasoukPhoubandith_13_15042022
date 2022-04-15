@@ -6,18 +6,18 @@ import User from './components/pages/User/User'
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage'
 
 function App() {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/user:id" element={<User />} />
-                    <Route path="*" element={<NotFoundPage />}/>
-                </Route>
-            </Routes>
-        </Router>
-    );
+  return (
+    <Router>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/user" element={<User />} />
+                <Route path="*" element={<NotFoundPage />}/>
+            </Route>
+        </Routes>
+    </Router>
+  );
 }
 
 export default App;

@@ -1,5 +1,6 @@
-.main {
+.login-main {
   padding-bottom: 370px;
+  display: flex;
 }
 
 .bg-dark {

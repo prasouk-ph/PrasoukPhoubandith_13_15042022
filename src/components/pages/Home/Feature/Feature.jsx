@@ -2,16 +2,14 @@ import './Feature.css';
 
 function Feature({iconSource, featureTitle, featureContent}) {  
   return (
-    <div class="feature-item">
+    <div className="feature-item">
       <img
         src={iconSource}
         alt="Chat Icon"
-        class="feature-icon"
+        className="feature-icon"
       />
-      <h3 class="feature-item-title">{featureTitle}</h3>
-      <p>
-        {featureContent}
-      </p>
+      <h3 className="feature-item-title">{featureTitle}</h3>
+      <p>{featureContent}</p>
     </div>
   );
 }
