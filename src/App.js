@@ -4,7 +4,6 @@ import Home from './components/pages/Home/Home'
 import Login from './components/pages/Login/Login'
 import User from './components/pages/User/User'
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage'
-import './css/main.css';
 
 function App() {
     return (

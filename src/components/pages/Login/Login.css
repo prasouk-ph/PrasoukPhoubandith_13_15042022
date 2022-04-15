@@ -1,92 +1,40 @@
-.home-hero,
-.card-container {
-    margin: 0 100px 43px 100px;
-    border-radius: 25px;
+.main {
+  padding-bottom: 370px;
 }
 
-.home-hero {
-    height: 223px;
-    background-size: cover;
-    background-blend-mode: darken;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.bg-dark {
+  background-color: #12002b;
 }
 
-.hero-text {
-    color: white;
-    position: absolute;
-    font-size: 3.3vw;
+.sign-in-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
 }
 
-.card-container {
-    background: #f6f6f6;
-    padding: 56px 50px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 1fr;
-    gap: 50px 60px;
-    justify-items: center;
+.sign-in-content {
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
 }
 
-.card {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    animation: grown 0.3s;
-    font-size: 1.25vw;
+.sign-in-icon {
+  font-size: 16px;
 }
 
-/* media queries */
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .home-hero,
-    .card-container {
-        margin: 0 50px 43px 50px;
-    }
+.input-remember {
+  display: flex;
 }
 
-@media screen and (max-width: 767px) {
-    .home-hero,
-    .card-container {
-        margin: 0 20px 20px 20px;
-    }
-
-    .home-hero {
-        height: 111px;
-    }
-
-    .card-container {
-        grid-template-columns: 1fr;
-        padding: 40px;
-    }
-
-    .card {
-        font-size: 2.343vw;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .hero-text {
-        font-size: 6.4vw;
-        padding: 15px 100px 15px 15px;
-    }
-
-    .card-container {
-        padding: 20px;
-        gap: 20px;
-    }
-
-    .card {
-        font-size: 4.8vw;
-    }
-}
-
-/* keyframes */
-@keyframes grown {
-    from {
-        transform: scale(0);
-    }
-    to {
-        transform: scale(1);
-    }
+.input-remember label {
+  margin-left: 0.25rem;
 }

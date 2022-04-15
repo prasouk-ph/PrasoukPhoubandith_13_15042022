@@ -6,19 +6,19 @@ import './Header.css';
 
 function Header() {
     return (
-      <div className='main-nav'>
+      <nav className='main-nav'>
         <Link className='main-nav-logo' to="/">
           <img className='main-nav-logo-image' src={logo} alt="Argent Bank Logo" />
           <h1 class="sr-only">Argent Bank</h1>
         </Link>
           
         <nav>
-          <Link className='main-nav-item' to="/">
+          <Link className='main-nav-item' to="/login">
             <FontAwesomeIcon className='userIcon' icon={faUserCircle} style={{ marginRight: 5}}/>
             Sign In
           </Link>
         </nav>
-      </div>
+      </nav>
     );
 }
 

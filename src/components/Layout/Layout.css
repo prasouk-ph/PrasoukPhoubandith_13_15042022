@@ -11,11 +11,8 @@ body {
 }
 
 .main {
+  display: flex;
   flex: 1;
-}
-
-.bg-dark {
-  background-color: #12002b;
 }
 
 .sr-only {
