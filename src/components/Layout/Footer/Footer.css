@@ -1,21 +1,11 @@
 .footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    background-color: black;
-    height: 209px;
-    gap: 30px;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #ccc;
+  padding: 2rem 0 1.5rem;
 }
 
-.copyright {
-    color: white;
-    font-size: 1.667vw;
-}
-
-@media screen and (max-width: 375px) {
-    .copyright {
-        font-size: 3.2vw;
-    }
+.footer-text {
+  margin: 0;
+  padding: 0;
 }
