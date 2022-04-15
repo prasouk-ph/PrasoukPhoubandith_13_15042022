@@ -1,10 +1,15 @@
+import Feature from './Feature/Feature';
 import iconChat from '../../../assets/icon-chat.png'
 import iconMoney from '../../../assets/icon-money.png'
 import iconSecurity from '../../../assets/icon-security.png'
 import './Home.css';
 
 function Home() {
-return (
+  const chatContent = "Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes."
+  const moneyContent = "The more you save with us, the higher your interest rate will be!"
+  const securityContent = "We use top of the line encryption to make sure your data and money is always safe."
+
+  return (
     <main>
       <div class="hero">
         <section class="hero-content">
@@ -18,42 +23,12 @@ return (
       
       <section class="features">
         <h2 class="sr-only">Features</h2>
-        <div class="feature-item">
-          <img src={iconChat} alt="Chat Icon" class="feature-icon" />
-          <h3 class="feature-item-title">You are our #1 priority</h3>
-          <p>
-            Need to talk to a representative? You can get in touch through our
-            24/7 chat or through a phone call in less than 5 minutes.
-          </p>
-        </div>
-        
-        <div class="feature-item">
-          <img
-            src={iconMoney}
-            alt="Chat Icon"
-            class="feature-icon"
-          />
-          <h3 class="feature-item-title">More savings means higher rates</h3>
-          <p>
-            The more you save with us, the higher your interest rate will be!
-          </p>
-        </div>
-        
-        <div class="feature-item">
-          <img
-            src={iconSecurity}
-            alt="Chat Icon"
-            class="feature-icon"
-          />
-          <h3 class="feature-item-title">Security you can trust</h3>
-          <p>
-            We use top of the line encryption to make sure your data and money
-            is always safe.
-          </p>
-        </div>
+        <Feature iconSource={iconChat} featureTitle={"You are our #1 priority"} featureContent={chatContent} />
+        <Feature iconSource={iconMoney} featureTitle={"More savings means higher rates"} featureContent={moneyContent} />
+        <Feature iconSource={iconSecurity} featureTitle={"Security you can trust"} featureContent={securityContent} />
       </section>
     </main>
-    );
+  );
 }
 
 export default Home;
