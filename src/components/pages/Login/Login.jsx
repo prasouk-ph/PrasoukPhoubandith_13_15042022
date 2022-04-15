@@ -8,7 +8,7 @@ function Login() {
   return (
     <main className="login-main bg-dark">
       <section className="sign-in-content">
-        <FontAwesomeIcon classNameName='sign-in-icon' icon={faUserCircle} />
+        <FontAwesomeIcon className='sign-in-icon' icon={faUserCircle} />
         <h1>Sign In</h1>
         
         <form>

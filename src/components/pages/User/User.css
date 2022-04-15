@@ -1,5 +1,8 @@
 .user-main {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  /* height: calc(100vh - 185px); */
+  padding: 22px 0 220px 0;
 }
 
 .edit-button {
@@ -13,4 +16,9 @@
 .header {
   color: #fff;
   margin-bottom: 2rem;
+}
+
+.header h1 {
+  margin: 0;
+  padding-bottom: 21px;
 }

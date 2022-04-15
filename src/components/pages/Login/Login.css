@@ -1,6 +1,8 @@
 .login-main {
   padding-bottom: 370px;
   display: flex;
+  flex-direction: column;
+  /* height: 89vh; */
 }
 
 .bg-dark {

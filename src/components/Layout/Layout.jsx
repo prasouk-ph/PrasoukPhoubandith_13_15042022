@@ -6,7 +6,7 @@ import './Layout.css';
 
 function Layout() {
     return (
-        <div className='Layout'>
+        <div>
             <Header />
             <Outlet />
             <Footer />
