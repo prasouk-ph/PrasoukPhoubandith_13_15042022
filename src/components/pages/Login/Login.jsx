@@ -6,26 +6,26 @@ import './Login.css';
 
 function Login() {
   return (
-    <main class="login-main bg-dark">
-      <section class="sign-in-content">
-        <FontAwesomeIcon className='sign-in-icon' icon={faUserCircle} />
+    <main className="login-main bg-dark">
+      <section className="sign-in-content">
+        <FontAwesomeIcon classNameName='sign-in-icon' icon={faUserCircle} />
         <h1>Sign In</h1>
         
         <form>
           <Input labelFor="username" labelName="Username" inputType="text" inputId="username" />
           <Input labelFor="password" labelName="Password" inputType="password" inputId="password" />
           
-          <div class="input-remember">
+          <div className="input-remember">
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
           
-          <Link to="/user" class="sign-in-button">Sign In</Link>
+          <Link to="/user" className="sign-in-button">Sign In</Link>
 
           {/* <!-- PLACEHOLDER DUE TO STATIC SITE -->
-          <a href="./user.html" class="sign-in-button">Sign In</a>
+          <a href="./user.html" className="sign-in-button">Sign In</a>
           <!-- SHOULD BE THE BUTTON BELOW -->
-          <!-- <button class="sign-in-button">Sign In</button> -->
+          <!-- <button className="sign-in-button">Sign In</button> -->
           <!--  --> */}
         </form>
       </section>
