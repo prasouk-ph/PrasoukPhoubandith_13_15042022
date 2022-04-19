@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { FormContext } from "../Login";
 import './Input.css';
 
-function Input({ labelFor, name, inputType, inputId }) {
-  const FormContextProvider = useContext(FormContext);
+function Input({ name, inputType, inputId }) {
+  const { formValue, handleFormChange } = useContext(FormContext);
 
   return (
     <div className="input-wrapper">
-      <label htmlFor={labelFor}>{name}</label>
-      <input className={`${name}-input`} type={inputType} id={inputId} name={name} value={FormContextProvider.form[name]} onChange={FormContextProvider.handleFormChange} />
+      <label htmlFor={name}>{name}</label>
+      <input className={`${name}-input`} type={inputType} id={inputId} name={name} value={formValue[name]} onChange={handleFormChange} />
     </div>
   );
 }
