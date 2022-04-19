@@ -10,10 +10,12 @@ export const LoginStateContext = createContext('');
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
+  const [userFirstName, setUserFirstName] = useState("Tony");
+  const [userLastName, setUserLastName] = useState("Jarvis");
 
   return (
     <Router>
-      <LoginStateContext.Provider value={{loginState: isLogged, setIsLogged: setIsLogged}}> {/* should pass an object to pass multiple things */}
+      <LoginStateContext.Provider value={{loginState: isLogged, setIsLogged: setIsLogged, userFirstName: userFirstName, setUserFirstName: setUserFirstName, userLastName: userLastName, setUserLastName: setUserLastName}}> {/* should pass an object to pass multiple things */}
         <Routes>     
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />

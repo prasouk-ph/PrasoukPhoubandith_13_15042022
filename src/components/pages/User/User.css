@@ -5,7 +5,7 @@
   padding: 22px 0 220px 0;
 }
 
-.edit-button {
+.edit-button, .confirm-button {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
@@ -21,4 +21,20 @@
 .header h1 {
   margin: 0;
   padding-bottom: 21px;
+}
+
+.name-edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 200px;
+}
+
+.name-edit-input {
+  width: 200px;
+}
+
+.confirm-button {
+  width: 210px;
 }

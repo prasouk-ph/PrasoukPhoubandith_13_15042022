@@ -1,12 +1,43 @@
 import Account from './Account/Account';
 import './User.css';
+import { LoginStateContext } from '../../../App';
+import { useContext, useState } from 'react';
 
 function User() {
+  const { userFirstName, setUserFirstName, userLastName, setUserLastName } = useContext(LoginStateContext);
+
+  const [editMode, setEditMode] = useState(false);
+
+  function handleClick() {
+    setEditMode(true)
+  }
+
+  function handleSubmit(event) {
+    const { firstname, lastname } = event.target
+
+    event.preventDefault()
+
+    if (firstname.value !== '' || lastname.value !== '') {
+      setUserFirstName(firstname.value)
+      setUserLastName(lastname.value)
+    }
+
+    setEditMode(false)
+  }
+
   return (
     <main className="user-main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
-        <button className="edit-button">Edit Name</button>
+        <h1>Welcome back<br />{`${userFirstName} ${userLastName}`} !</h1>
+
+        {editMode ?
+          <form className='name-edit' onSubmit={handleSubmit}>
+            <input className='name-edit-input' type="text" name='firstname' placeholder='Enter your first name' />
+            <input className='name-edit-input' type="text" name='lastname' placeholder='Enter your last name' />
+            <button className="confirm-button">Confirm</button>
+          </form>
+          : <button className="edit-button" onClick={handleClick}>Edit Name</button>
+        }
       </div>
 
       <h2 className="sr-only">Accounts</h2>
