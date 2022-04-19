@@ -19,7 +19,7 @@ function Login() {
     const { name, value } = event.target;
 
     const updatedForm = {
-      ...form, // get a copy of form because can't edit it directly
+      ...form, // get a copy of form because can't edit an array directly
       [name]: value // change property according to name and set new value
     };
 
@@ -38,7 +38,7 @@ function Login() {
         <h1>Sign In</h1>
         
         <form onSubmit={handleSubmit}>
-          <FormContext.Provider value={{form: form, handleFormChange: handleFormChange}}> {/* give load state to every children */}
+          <FormContext.Provider value={{form: form, handleFormChange: handleFormChange}}> {/* should pass an object to pass multiple things */}
             <Input labelFor="username" name="username" inputType="text" inputId="username" />
             <Input labelFor="password" name="password" inputType="password" inputId="password" />
           </FormContext.Provider>
@@ -48,7 +48,7 @@ function Login() {
             <label htmlFor="remember-me">Remember me</label>
           </div>
           
-          <button className="sign-in-button">Sign In</button>
+          <button className="sign-in-button" disabled={(form.username === "" || form.password === "") && true}>Sign In</button>
         </form>
       </section>
     </main>

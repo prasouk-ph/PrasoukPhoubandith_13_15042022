@@ -8,7 +8,7 @@ function Input({ labelFor, name, inputType, inputId }) {
   return (
     <div className="input-wrapper">
       <label htmlFor={labelFor}>{name}</label>
-      <input type={inputType} id={inputId} name={name} value={FormContextProvider.form[name]} onChange={FormContextProvider.handleFormChange} />
+      <input className={`${name}-input`} type={inputType} id={inputId} name={name} value={FormContextProvider.form[name]} onChange={FormContextProvider.handleFormChange} />
     </div>
   );
 }
