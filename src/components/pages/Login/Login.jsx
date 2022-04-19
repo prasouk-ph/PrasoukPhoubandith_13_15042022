@@ -29,6 +29,7 @@ function Login() {
   function handleSubmit(event) {
     event.preventDefault()
     navigate("/user");
+    // set islogged = true
   }
 
   return (

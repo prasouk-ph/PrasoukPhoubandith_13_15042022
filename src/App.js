@@ -8,7 +8,8 @@ import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage'
 function App() {
   return (
     <Router>
-        <Routes>
+      <Routes>
+        {/* add islogged provider */}
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="/login" element={<Login />} />
