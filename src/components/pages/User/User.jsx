@@ -1,10 +1,12 @@
 import Account from './Account/Account';
 import './User.css';
 import { LoginStateContext } from '../../../App';
+import { AccountsDataContext } from '../../../App';
 import { useContext, useState } from 'react';
 
 function User() {
   const { userFirstName, setUserFirstName, userLastName, setUserLastName } = useContext(LoginStateContext);
+  const accounts = useContext(AccountsDataContext);
 
   const [editMode, setEditMode] = useState(false);
 
@@ -28,26 +30,6 @@ function User() {
   function handleCancel() {
     setEditMode(false)
   }
-
-  const Accounts = [
-    {
-      id: 1,
-      title: "Argent Bank Checking (x8349)",
-      amount: "$2,082.79",
-      description: "Available Balance"
-    },
-    {
-      id: 2,
-      title: "Argent Bank Savings (x6712)",
-      amount: "$10,928.42",
-      description: "Available Balance"
-    },
-    {
-      title: "Argent Bank Credit Card (x8349)",
-      amount: "$184.30",
-      description: "Current Balance"
-    }
-  ]
 
   return (
     <main className="user-main bg-dark">
@@ -73,8 +55,8 @@ function User() {
       <h2 className="sr-only">Accounts</h2>
       
       <div className="accounts-container">
-        {Accounts.map(account => 
-          <Account key={`account-${account.id}`} accountTitle={account.title} accountAmount={account.amount} accountDescription={account.description} />
+        {accounts.map(account => 
+          <Account key={`account-${account.id}`} accountId={account.id} accountTitle={account.title} accountAmount={account.amount} accountDescription={account.description} />
         )}
       </div>
     </main>
