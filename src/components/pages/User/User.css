@@ -5,7 +5,7 @@
   padding: 22px 0 220px 0;
 }
 
-.edit-button, .confirm-button {
+.edit-button, .name-edit-button {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
@@ -28,13 +28,24 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 200px;
+  height: 100px;
 }
 
 .name-edit-input {
   width: 200px;
+  height: 30px;
+  padding-left: 10px;
 }
 
-.confirm-button {
-  width: 210px;
+.name-edit-button {
+  width: 150px;
+  height: 30px;
+  padding: 0;
+}
+
+.input-container, .button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 450px;
 }

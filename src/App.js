@@ -10,7 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 export const LoginStateContext = createContext('');
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(true);
   const [userFirstName, setUserFirstName] = useState("Tony");
   const [userLastName, setUserLastName] = useState("Jarvis");
 

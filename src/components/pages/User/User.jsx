@@ -52,9 +52,15 @@ function User() {
 
         {editMode ?
           <form className='name-edit' onSubmit={handleSubmit}>
-            <input className='name-edit-input' type="text" name='firstname' placeholder='Enter your first name' />
-            <input className='name-edit-input' type="text" name='lastname' placeholder='Enter your last name' />
-            <button className="confirm-button">Confirm</button>
+            <div className="input-container">
+              <input className='name-edit-input' type="text" name='firstname' placeholder={userFirstName} />
+              <input className='name-edit-input' type="text" name='lastname' placeholder={userLastName} />
+            </div>
+
+            <div className="button-container">
+              <button className="name-edit-button">Save</button>
+              <button className="name-edit-button">Cancel</button>
+            </div>
           </form>
           : <button className="edit-button" onClick={handleClick}>Edit Name</button>
         }
