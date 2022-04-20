@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import Input from './Input/Input';
 import { LoginStateContext } from '../../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,7 +10,7 @@ export const FormContext = createContext('');
 
 function Login() {
   let navigate = useNavigate();
-  const { setIsLogged } = useContext(LoginStateContext);
+  const { isLogged, setIsLogged } = useContext(LoginStateContext);
 
   const [formValue, setFormValue] = useState({
       username: '',
@@ -34,7 +34,8 @@ function Login() {
     navigate("/user");
   }
 
-  return (
+  return !isLogged ?
+  (
     <main className="login-main bg-dark">
       <section className="sign-in-content">
         <FontAwesomeIcon className='sign-in-icon' icon={faUserCircle} />
@@ -55,7 +56,8 @@ function Login() {
         </form>
       </section>
     </main>
-  );
+  ) :
+  (<Navigate to="/user" />)
 }
 
 export default Login;
