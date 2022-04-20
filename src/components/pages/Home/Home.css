@@ -28,6 +28,10 @@
   font-size: 0.9rem;
 }
 
+.features-container {
+  display: flex;
+}
+
 @media (min-width: 920px) {
   .hero {
     height: 400px;

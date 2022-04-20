@@ -9,7 +9,7 @@ import { useContext } from 'react';
 function Header() {
   const { isLogged, setIsLogged, userFirstName } = useContext(LoginStateContext);
 
-  function handleOnClick() {
+  function handleSignOut() {
     setIsLogged(false)
   }
 
@@ -28,7 +28,7 @@ function Header() {
                 <FontAwesomeIcon className='userIcon' icon={faUserCircle} style={{ marginRight: 5}}/>
                 {userFirstName}
               </Link>
-              <Link className='main-nav-item' to="/" onClick={handleOnClick}>
+              <Link className='main-nav-item' to="/" onClick={handleSignOut}>
                 <FontAwesomeIcon className='signOutIcon' icon={faSignOut} style={{ marginRight: 5}} />
                 Sign Out
               </Link>

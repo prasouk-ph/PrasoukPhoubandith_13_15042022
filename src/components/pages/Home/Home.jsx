@@ -5,9 +5,26 @@ import iconSecurity from '../../../assets/icon-security.png'
 import './Home.css';
 
 function Home() {
-  const chatContent = "Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes."
-  const moneyContent = "The more you save with us, the higher your interest rate will be!"
-  const securityContent = "We use top of the line encryption to make sure your data and money is always safe."
+  const features = [
+    {
+      id: 1,
+      title: "You are our #1 priority",
+      content: "Need to talk to a representative? You can get in touch through our 24/7 chat or through a phone call in less than 5 minutes.",
+      icon: iconChat
+    },
+    {
+      id: 2,
+      title: "More savings means higher rates",
+      content: "The more you save with us, the higher your interest rate will be!",
+      icon: iconMoney
+    },
+    {
+      id: 3,
+      title: "Security you can trust",
+      content: "We use top of the line encryption to make sure your data and money is always safe.",
+      icon: iconSecurity
+    }
+  ]
 
   return (
     <main>
@@ -23,9 +40,12 @@ function Home() {
       
       <section className="features">
         <h2 className="sr-only">Features</h2>
-        <Feature iconSource={iconChat} featureTitle={"You are our #1 priority"} featureContent={chatContent} />
-        <Feature iconSource={iconMoney} featureTitle={"More savings means higher rates"} featureContent={moneyContent} />
-        <Feature iconSource={iconSecurity} featureTitle={"Security you can trust"} featureContent={securityContent} />
+        
+        <div className="features-container">
+        {features.map((feature) => 
+          <Feature key={`feature-${feature.id}`} iconSource={feature.icon} featureTitle={feature.title} featureContent={feature.content} />
+        )}
+        </div>
       </section>
     </main>
   );
