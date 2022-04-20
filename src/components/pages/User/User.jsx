@@ -25,6 +25,10 @@ function User() {
     setEditMode(false)
   }
 
+  function handleCancel() {
+    setEditMode(false)
+  }
+
   const Accounts = [
     {
       id: 1,
@@ -58,8 +62,8 @@ function User() {
             </div>
 
             <div className="button-container">
-              <button className="name-edit-button">Save</button>
-              <button className="name-edit-button">Cancel</button>
+              <button className="name-edit-button" type='submit'>Save</button>
+              <button className="name-edit-button" type='reset' onClick={handleCancel}>Cancel</button>
             </div>
           </form>
           : <button className="edit-button" onClick={handleClick}>Edit Name</button>
