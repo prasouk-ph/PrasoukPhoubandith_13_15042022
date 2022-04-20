@@ -7,7 +7,7 @@ import { LoginStateContext } from '../../../App';
 import { useContext } from 'react';
 
 function Header() {
-  const { loginState, setIsLogged, userFirstName } = useContext(LoginStateContext);
+  const { isLogged, setIsLogged, userFirstName } = useContext(LoginStateContext);
 
   function handleOnClick() {
     setIsLogged(false)
@@ -21,7 +21,7 @@ function Header() {
       </Link>
         
       <nav>
-        {loginState ? 
+        {isLogged ? 
           (
             <div>
               <Link className='main-nav-item' to="/user" style={{ marginRight: 11}}>

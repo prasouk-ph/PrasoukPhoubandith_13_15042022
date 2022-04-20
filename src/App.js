@@ -5,6 +5,7 @@ import Home from './components/pages/Home/Home'
 import Login from './components/pages/Login/Login'
 import User from './components/pages/User/User'
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 export const LoginStateContext = createContext('');
 
@@ -15,13 +16,19 @@ function App() {
 
   return (
     <Router>
-      <LoginStateContext.Provider value={{loginState: isLogged, setIsLogged: setIsLogged, userFirstName: userFirstName, setUserFirstName: setUserFirstName, userLastName: userLastName, setUserLastName: setUserLastName}}> {/* should pass an object to pass multiple things */}
+      <LoginStateContext.Provider value={{isLogged: isLogged, setIsLogged: setIsLogged, userFirstName: userFirstName, setUserFirstName: setUserFirstName, userLastName: userLastName, setUserLastName: setUserLastName}}>
         <Routes>     
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/user" element={<User />} />
-            <Route path="*" element={<NotFoundPage />}/>
+            <Route path="/user" element={
+              <ProtectedRoute>
+                <User />
+              </ProtectedRoute>
+              }
+            />
+            {/* <ProtectedRoute path="/transactions" element={<Transactions />} /> */}
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </LoginStateContext.Provider>
