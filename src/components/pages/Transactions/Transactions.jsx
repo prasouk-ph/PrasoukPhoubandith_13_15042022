@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-// import TransactionItem from './TransactionItem/TransactionItem'
+import TransactionItem from './TransactionItem/TransactionItem'
 import './Transactions.css';
 import { AccountsDataContext } from '../../../App';
 import { useContext, useEffect } from 'react';
@@ -99,12 +99,7 @@ function Transactions() {
           </thead>
           <tbody className='table-body'>
             {transactions.map(account => 
-              <tr key={account.id} className='transaction-item'>
-                <th>{account.date}</th>
-                <th>{account.description}</th>
-                <th>{`$ ${account.amount}`}</th>
-                <th>{`$ ${account.balance}`}</th>
-              </tr>
+              <TransactionItem key={account.id} transactionDate={account.date} transactionDescription={account.description} transactionAmount={account.amount} transactionBalance={account.balance} />
             )}
           </tbody>
         </table>

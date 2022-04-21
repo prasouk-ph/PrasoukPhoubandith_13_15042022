@@ -1,77 +1,20 @@
+import React, { useState } from 'react';
 import './TransactionItem.css';
-// import { LoginStateContext } from '../../../App';
-// import { useContext, useState } from 'react';
 
-function TransactionItem({ accountTitle, accountAmount, accountDescription }) {
-  const transactions = [
-    {
-      id: 1,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 2,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 3,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 4,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 5,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 6,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    }
-  ]
+function TransactionItem({ transactionDate, transactionDescription, transactionAmount, transactionBalance }) {
+  const [isActive, setIsActive] = useState(false);
+
+  function handleClick() {
+    setIsActive(!isActive)
+  }
 
   return (
-    <main className="user-main bg-dark">
-      <div className="header">
-        {/* <h1>{accountTitle}</h1>
-        <p>{accountAmount}</p>
-        <p>{accountDescription}</p> */}
-        <h1>Argent Bank Checking (x8349)</h1>
-        <p>$2,082.79</p>
-        <p>Available Balance</p>
-      </div>
-    
-    </main>
+    <tr className='transaction-item' onClick={handleClick}>
+      <td>{transactionDate}</td>
+      <td>{transactionDescription}</td>
+      <td>{`$ ${transactionAmount}`}</td>
+      <td>{`$ ${transactionBalance}`}</td>
+    </tr>
   );
 }
 
