@@ -1,8 +1,65 @@
 import { useParams, useNavigate } from "react-router-dom";
-import TransactionItem from './TransactionItem/TransactionItem'
 import './Transactions.css';
 import { AccountsDataContext } from '../../../App';
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
+import TransactionTable from "./TransactionTable/TransactionTable";
+
+const getData = () => [
+  {
+    id: 1,
+    date: "June 20th, 2020",
+    description: "Golden Sun Bakery",
+    amount: 5,
+    balance: 2082.79,
+    type: "Electronic",
+    category: "Food"
+  },
+  {
+    id: 2,
+    date: "June 20th, 2020",
+    description: "Golden Sun Bakery",
+    amount: 5,
+    balance: 2082.79,
+    type: "Electronic",
+    category: "Food"
+  },
+  {
+    id: 3,
+    date: "June 20th, 2020",
+    description: "Golden Sun Bakery",
+    amount: 5,
+    balance: 2082.79,
+    type: "Electronic",
+    category: "Food"
+  },
+  {
+    id: 4,
+    date: "June 20th, 2020",
+    description: "Golden Sun Bakery",
+    amount: 5,
+    balance: 2082.79,
+    type: "Electronic",
+    category: "Food"
+  },
+  {
+    id: 5,
+    date: "June 20th, 2020",
+    description: "Golden Sun Bakery",
+    amount: 5,
+    balance: 2082.79,
+    type: "Electronic",
+    category: "Food"
+  },
+  {
+    id: 6,
+    date: "June 20th, 2020",
+    description: "Golden Sun Bakery",
+    amount: 5,
+    balance: 2082.79,
+    type: "Electronic",
+    category: "Food"
+  }
+];
 
 function Transactions() {
   const { id } = useParams();
@@ -22,62 +79,29 @@ function Transactions() {
     checkData()
   })
 
-  const transactions = [
-    {
-      id: 1,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 2,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 3,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 4,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 5,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    },
-    {
-      id: 6,
-      date: "June 20th, 2020",
-      description: "Golden Sun Bakery",
-      amount: 5,
-      balance: 2082.79,
-      type: "Electronic",
-      category: "Food"
-    }
-  ]
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Date",
+        accessor: "date", // accessor value corresponding to key name from data
+      },
+      {
+        Header: "Description",
+        accessor: "description",
+      },
+      {
+        Header: "Amount",
+        accessor: "amount",
+      },
+      {
+        Header: "Balance",
+        accessor: "balance",
+      },
+    ],
+    []
+  );
+
+  const data = useMemo(() => getData(), []);
 
   return (
     <div>
@@ -88,21 +112,7 @@ function Transactions() {
       </header>
 
       <main className="transactions-main bg-dark">
-        <table className='transactions-table'>
-          <thead>
-            <tr>
-              <th>DATE</th>
-              <th>DESCRIPTION</th>
-              <th>AMOUNT</th>
-              <th>BALANCE</th>
-            </tr>
-          </thead>
-          <tbody className='table-body'>
-            {transactions.map(account => 
-              <TransactionItem key={account.id} transactionDate={account.date} transactionDescription={account.description} transactionAmount={account.amount} transactionBalance={account.balance} />
-            )}
-          </tbody>
-        </table>
+        <TransactionTable columns={columns} data={data} />
       </main>
     </div>
   );
