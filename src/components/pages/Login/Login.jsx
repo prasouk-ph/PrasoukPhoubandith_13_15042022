@@ -5,7 +5,8 @@ import { LoginStateContext } from '../../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import './Login.css';
-import axios from "axios";
+import { addItem } from '../../../services/LocaleStorage'
+import { login } from "../../../services/login";
 
 export const FormContext = createContext('');
 
@@ -32,19 +33,18 @@ function Login() {
   async function handleSubmit(event) {
     event.preventDefault()
     try {
-      
       const response = await login(formValue)
-      console.log(response)
+      
+      const token = response.data.body.token
+
+      if (token) {
+        setIsLogged(true)
+        addItem("token", token)
+        navigate("/user");
+      }
     } catch ({response}) {
       console.log(response)
     }
-
-    setIsLogged(true)
-    navigate("/user");
-  }
-
-  function login(credentials) {
-    return axios.post('http://localhost:3001/api/v1/user/login', credentials)
   }
 
   return !isLogged ?

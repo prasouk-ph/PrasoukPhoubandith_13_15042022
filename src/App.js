@@ -7,6 +7,7 @@ import User from './components/pages/User/User'
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Transactions from './components/pages/Transactions/Transactions'
+import { checkLoginStatus } from './services/login'
 
 const accounts = [
   {
@@ -33,7 +34,7 @@ export const LoginStateContext = createContext({});
 export const AccountsDataContext = createContext({});
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(checkLoginStatus);
   const [userFirstName, setUserFirstName] = useState("Tony");
   const [userLastName, setUserLastName] = useState("Jarvis");
   

@@ -5,11 +5,14 @@ import { faUserCircle, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import './Header.css';
 import { LoginStateContext } from '../../../App';
 import { useContext } from 'react';
+import { removeItem } from '../../../services/LocaleStorage'
+
 
 function Header() {
   const { isLogged, setIsLogged, userFirstName } = useContext(LoginStateContext);
 
   function handleSignOut() {
+    removeItem("token")
     setIsLogged(false)
   }
 

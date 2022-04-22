@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import './Transactions.css';
 import { AccountsDataContext } from '../../../App';
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import TransactionTable from "./TransactionTable/TransactionTable";
 
 const getData = () => [
@@ -65,13 +65,18 @@ function Transactions() {
   const { id } = useParams();
   let navigate = useNavigate()
   const accounts = useContext(AccountsDataContext);
+  const [dataIsValid, setDataIsValid] = useState(null)
 
   const currentAccount = accounts.filter(account => account.id === parseInt(id))[0]
+  console.log(currentAccount)
 
   function checkData() {
-    if (currentAccount.length === 0) {
+    if (currentAccount === undefined) {
       console.log("ID inexistant !");
+      setDataIsValid(false)
       navigate(`/404`);
+    } else {
+      setDataIsValid(true)
     }
   }
 
@@ -103,19 +108,21 @@ function Transactions() {
 
   const data = useMemo(() => getData(), []);
 
-  return (
-    <div>
-      <header className="transactions-header">
-        <h1>{currentAccount.title}</h1>
-        <p>{currentAccount.amount}</p>
-        <p>{currentAccount.description}</p>
-      </header>
+  if (dataIsValid) {
+    return (
+      <div>
+        <header className="transactions-header">
+          <h1>{currentAccount.title}</h1>
+          <p>{currentAccount.amount}</p>
+          <p>{currentAccount.description}</p>
+        </header>
 
-      <main className="transactions-main bg-dark">
-        <TransactionTable columns={columns} data={data} />
-      </main>
-    </div>
-  );
+        <main className="transactions-main bg-dark">
+          <TransactionTable columns={columns} data={data} />
+        </main>
+      </div>
+    )
+  }
 }
 
 export default Transactions;
