@@ -30,10 +30,10 @@ const accounts = [
 ]
 
 export const LoginStateContext = createContext({});
-export const AccountsDataContext = createContext(accounts);
+export const AccountsDataContext = createContext({});
 
 function App() {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const [userFirstName, setUserFirstName] = useState("Tony");
   const [userLastName, setUserLastName] = useState("Jarvis");
   

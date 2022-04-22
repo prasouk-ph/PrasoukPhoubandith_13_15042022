@@ -5,6 +5,7 @@ import { LoginStateContext } from '../../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import './Login.css';
+import axios from "axios";
 
 export const FormContext = createContext('');
 
@@ -13,7 +14,7 @@ function Login() {
   const { isLogged, setIsLogged } = useContext(LoginStateContext);
 
   const [formValue, setFormValue] = useState({
-      username: '',
+      email: '',
       password: ''
   });
 
@@ -28,10 +29,22 @@ function Login() {
     setFormValue(updatedForm); // replace form by updatedForm without editing form
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
+    try {
+      
+      const response = await login(formValue)
+      console.log(response)
+    } catch ({response}) {
+      console.log(response)
+    }
+
     setIsLogged(true)
     navigate("/user");
+  }
+
+  function login(credentials) {
+    return axios.post('http://localhost:3001/api/v1/user/login', credentials)
   }
 
   return !isLogged ?
@@ -43,7 +56,7 @@ function Login() {
         
         <form onSubmit={handleSubmit}>
           <FormContext.Provider value={{formValue: formValue, handleFormChange: handleFormChange}}> {/* should pass an object to pass multiple things */}
-            <Input name="username" inputType="text" inputId="username" />
+            <Input name="email" inputType="text" inputId="email" />
             <Input name="password" inputType="password" inputId="password" />
           
             <div className="input-remember">
@@ -51,7 +64,7 @@ function Login() {
               <label htmlFor="remember-me">Remember me</label>
             </div>
             
-            <button className="sign-in-button" disabled={(formValue.username === "" || formValue.password === "") && true}>Sign In</button>
+            <button className="sign-in-button" disabled={(formValue.email === "" || formValue.password === "") && true}>Sign In</button>
           </FormContext.Provider>
         </form>
       </section>
