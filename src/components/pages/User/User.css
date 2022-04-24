@@ -1,8 +1,7 @@
 .user-main {
   display: flex;
   flex-direction: column;
-  /* height: calc(100vh - 185px); */
-  padding: 22px 0 220px 0;
+  padding: 22px 0 15vh 0;
 }
 
 .edit-button, .name-edit-button {

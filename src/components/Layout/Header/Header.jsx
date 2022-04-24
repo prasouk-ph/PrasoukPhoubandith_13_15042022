@@ -26,20 +26,20 @@ function Header() {
       <nav>
         {isLogged ? 
           (
-            <div>
+            <div className='link-container'>
               <Link className='main-nav-item' to="/user" style={{ marginRight: 11}}>
-                <FontAwesomeIcon className='userIcon' icon={faUserCircle} style={{ marginRight: 5}}/>
-                {userFirstName}
+                <FontAwesomeIcon className='userIcon' icon={faUserCircle} />
+                <p className='link-content'>{userFirstName}</p>
               </Link>
               <Link className='main-nav-item' to="/" onClick={handleSignOut}>
-                <FontAwesomeIcon className='signOutIcon' icon={faSignOut} style={{ marginRight: 5}} />
-                Sign Out
+                <FontAwesomeIcon className='signOutIcon link-icon' icon={faSignOut} />
+                 <p className='link-content'>Sign Out</p>
               </Link>
             </div>)
           :
             <Link className='main-nav-item' to="/login">
-              <FontAwesomeIcon className='userIcon' icon={faUserCircle} style={{ marginRight: 5}}/>
-              Sign In
+              <FontAwesomeIcon className='userIcon link-icon' icon={faUserCircle} />
+              <p className='link-content'>Sign In</p>
             </Link>
         } 
       </nav>
