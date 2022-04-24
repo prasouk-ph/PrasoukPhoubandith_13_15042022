@@ -4,17 +4,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import './Header.css';
 import { LoginStateContext } from '../../../App';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { removeItem } from '../../../services/LocaleStorage'
+import { getUserData } from '../../../services/login'
 
 
 function Header() {
-  const { isLogged, setIsLogged, userFirstName } = useContext(LoginStateContext);
+  const { isLogged, setIsLogged, userFirstName, setUserFirstName, } = useContext(LoginStateContext);
+
 
   function handleSignOut() {
     removeItem("token")
     setIsLogged(false)
   }
+
+  
+  async function loadData() {
+    try {
+      const response = await getUserData()
+      const { firstName } = response.data.body
+      setUserFirstName(firstName)
+      // setUserLastName(lastName)
+    } catch ({response}) {
+      console.log(response)
+    }
+  }
+
+  useEffect(() => {
+    loadData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userFirstName])
 
   return (
     <nav className='main-nav'>
