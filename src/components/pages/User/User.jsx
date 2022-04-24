@@ -2,7 +2,8 @@ import Account from './Account/Account';
 import './User.css';
 import { LoginStateContext } from '../../../App';
 import { AccountsDataContext } from '../../../App';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { getUserData } from '../../../services/login'
 
 function User() {
   const { userFirstName, setUserFirstName, userLastName, setUserLastName } = useContext(LoginStateContext);
@@ -30,6 +31,19 @@ function User() {
   function handleCancel() {
     setEditMode(false)
   }
+
+  async function init() {
+    const response = await getUserData()
+    const { firstName, lastName } = response.data.body
+    if (response.status === 200) {
+      setUserFirstName(firstName)
+      setUserLastName(lastName)
+    }
+  }
+
+  useEffect(() => {
+    init()
+  }, [])
 
   return (
     <main className="user-main bg-dark">
