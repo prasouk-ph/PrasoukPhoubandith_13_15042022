@@ -20,12 +20,14 @@ function Header() {
 
   
   async function loadData() {
-    try {
-      const response = await getUserData()
-      const { firstName } = response.data.body
-      setUserFirstName(firstName)
-    } catch ({response}) {
-      console.log(response)
+    if (isLogged) {
+      try {
+        const response = await getUserData()
+        const { firstName } = response.data.body
+        setUserFirstName(firstName)
+      } catch ({response}) {
+        console.log(response)
+      }
     }
   }
 

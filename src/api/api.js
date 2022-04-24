@@ -1,6 +1,15 @@
 import axios from "axios";
 import { getItem } from "../services/LocaleStorage";
 
+// axios.interceptors.request.use(function (config) {
+//   config.headers['Bearer Token'] = getItem("token")
+//   return config;
+// }, function (error) {
+//   // Do something with request error
+//   return Promise.reject(error);
+// });
+
+
 export function login(credentials) {
   const loginURL = 'http://localhost:3001/api/v1/user/login'
   
