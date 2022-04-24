@@ -3,7 +3,7 @@ import './User.css';
 import { LoginStateContext } from '../../../App';
 import { AccountsDataContext } from '../../../App';
 import { useContext, useState, useEffect } from 'react';
-import { getUserData } from '../../../services/login'
+import { getUserData, changeUserData } from '../../../services/login'
 
 function User() {
   const { userFirstName, setUserFirstName, userLastName, setUserLastName } = useContext(LoginStateContext);
@@ -20,7 +20,8 @@ function User() {
 
     event.preventDefault()
 
-    if (firstname.value !== '' || lastname.value !== '') {
+    if (firstname.value !== '') {
+      changeUserData(firstname.value, lastname.value)
       setUserFirstName(firstname.value)
       setUserLastName(lastname.value)
     }
@@ -32,7 +33,7 @@ function User() {
     setEditMode(false)
   }
 
-  async function init() {
+  async function loadData() {
     const response = await getUserData()
     const { firstName, lastName } = response.data.body
     if (response.status === 200) {
@@ -42,8 +43,9 @@ function User() {
   }
 
   useEffect(() => {
-    init()
-  }, [])
+    loadData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userFirstName])
 
   return (
     <main className="user-main bg-dark">

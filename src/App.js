@@ -35,8 +35,8 @@ export const AccountsDataContext = createContext({});
 
 function App() {
   const [isLogged, setIsLogged] = useState(checkLoginStatus);
-  const [userFirstName, setUserFirstName] = useState();
-  const [userLastName, setUserLastName] = useState();
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userLastName, setUserLastName] = useState("");
   
   return (
     <Router>
