@@ -6,7 +6,7 @@ import './Header.css';
 import { LoginStateContext } from '../../../App';
 import { useContext, useEffect } from 'react';
 import { removeItem } from '../../../services/LocaleStorage'
-import { getUserData } from '../../../services/login'
+import { getUserData } from '../../../api/api'
 
 
 function Header() {
@@ -24,7 +24,6 @@ function Header() {
       const response = await getUserData()
       const { firstName } = response.data.body
       setUserFirstName(firstName)
-      // setUserLastName(lastName)
     } catch ({response}) {
       console.log(response)
     }

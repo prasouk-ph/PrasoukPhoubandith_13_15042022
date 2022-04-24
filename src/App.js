@@ -7,7 +7,7 @@ import User from './components/pages/User/User'
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Transactions from './components/pages/Transactions/Transactions'
-import { checkLoginStatus } from './services/login'
+import { getItem } from "./services/LocaleStorage";
 
 const accounts = [
   {
@@ -37,6 +37,15 @@ function App() {
   const [isLogged, setIsLogged] = useState(checkLoginStatus);
   const [userFirstName, setUserFirstName] = useState("");
   const [userLastName, setUserLastName] = useState("");
+
+
+  function checkLoginStatus() {
+    const token = getItem("token")
+  
+    if (token) {
+      return true
+    }
+  }
   
   return (
     <Router>

@@ -3,7 +3,7 @@ import './User.css';
 import { LoginStateContext } from '../../../App';
 import { AccountsDataContext } from '../../../App';
 import { useContext, useState, useEffect } from 'react';
-import { getUserData, changeUserData } from '../../../services/login'
+import { getUserData, changeUserData } from '../../../api/api'
 
 function User() {
   const { userFirstName, setUserFirstName, userLastName, setUserLastName } = useContext(LoginStateContext);

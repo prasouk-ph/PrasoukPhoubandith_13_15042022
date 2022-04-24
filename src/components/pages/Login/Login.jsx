@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import './Login.css';
 import { addItem } from '../../../services/LocaleStorage'
-import { login } from "../../../services/login";
+import { login } from "../../../api/api";
 
 export const FormContext = createContext('');
 
@@ -68,7 +68,7 @@ function Login() {
             
             <button className="sign-in-button" disabled={(formValue.email === "" || formValue.password === "") && true}>Sign In</button>
             
-            {loginFailure && (<p className="error-message">Email ou mot de passe incorrecte !</p>)}
+            {loginFailure && (<p className="error-message">Email ou mot de passe incorrect !</p>)}
           </FormContext.Provider>
         </form>
       </section>

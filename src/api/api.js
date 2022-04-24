@@ -1,11 +1,12 @@
 import axios from "axios";
-import { getItem } from "./LocaleStorage";
+import { getItem } from "../services/LocaleStorage";
 
 export function login(credentials) {
   const loginURL = 'http://localhost:3001/api/v1/user/login'
   
   return axios.post(loginURL, credentials)
 }
+
 
 export function getUserData() {
   const userDataURL = 'http://localhost:3001/api/v1/user/profile'
@@ -17,6 +18,7 @@ export function getUserData() {
   
   return axios.post(userDataURL, body, { headers: headers })
 }
+
 
 export function changeUserData(userFirstName, userLastName) {
   const userDataURL = 'http://localhost:3001/api/v1/user/profile'
@@ -30,12 +32,4 @@ export function changeUserData(userFirstName, userLastName) {
   }
   
   return axios.put(userDataURL, body, { headers: headers })
-}
-
-export function checkLoginStatus() {
-  const token = getItem("token")
-
-  if (token) {
-    return true
-  }
 }
