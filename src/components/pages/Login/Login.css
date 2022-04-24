@@ -48,3 +48,9 @@
 .input-remember label {
   margin-left: 0.25rem;
 }
+
+.error-message {
+  color: brown;
+  font-weight: bold;
+  background-color: lightcoral;
+}

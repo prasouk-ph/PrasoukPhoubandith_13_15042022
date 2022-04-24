@@ -39,7 +39,7 @@ function User() {
     setEditMode(false)
   }
 
-  
+
   async function loadData() {
     try {
       const response = await getUserData()

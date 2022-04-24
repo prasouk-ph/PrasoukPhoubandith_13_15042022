@@ -17,8 +17,8 @@ function Login() {
       email: '',
       password: ''
   });
+  const [loginFailure, setLoginFailure] = useState()
 
-  
   function handleFormChange(event) {
     const { name, value } = event.target;
 
@@ -30,7 +30,7 @@ function Login() {
     setFormValue(updatedForm); // replace form by updatedForm without editing form
   }
 
-  
+
   async function handleSubmit(event) {
     event.preventDefault()
     try {
@@ -44,7 +44,8 @@ function Login() {
         navigate("/user");
       }
     } catch ({response}) {
-      console.log(response)
+      if (response.status !== 200)
+        setLoginFailure(true)
     }
   }
 
@@ -66,6 +67,8 @@ function Login() {
             </div>
             
             <button className="sign-in-button" disabled={(formValue.email === "" || formValue.password === "") && true}>Sign In</button>
+            
+            {loginFailure && (<p className="error-message">Email ou mot de passe incorrecte !</p>)}
           </FormContext.Provider>
         </form>
       </section>
