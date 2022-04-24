@@ -61,6 +61,7 @@ const getData = () => [
   }
 ];
 
+
 function Transactions() {
   const { id } = useParams();
   let navigate = useNavigate()
@@ -70,6 +71,7 @@ function Transactions() {
   const currentAccount = accounts.filter(account => account.id === parseInt(id))[0]
   // console.log(currentAccount)
 
+  
   function checkData() {
     if (currentAccount === undefined) {
       console.log("ID inexistant !");

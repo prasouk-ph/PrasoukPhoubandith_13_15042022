@@ -13,12 +13,12 @@ export const FormContext = createContext('');
 function Login() {
   let navigate = useNavigate();
   const { isLogged, setIsLogged } = useContext(LoginStateContext);
-
   const [formValue, setFormValue] = useState({
       email: '',
       password: ''
   });
 
+  
   function handleFormChange(event) {
     const { name, value } = event.target;
 
@@ -30,6 +30,7 @@ function Login() {
     setFormValue(updatedForm); // replace form by updatedForm without editing form
   }
 
+  
   async function handleSubmit(event) {
     event.preventDefault()
     try {

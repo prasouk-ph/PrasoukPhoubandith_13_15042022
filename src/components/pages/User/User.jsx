@@ -8,37 +8,46 @@ import { getUserData, changeUserData } from '../../../services/login'
 function User() {
   const { userFirstName, setUserFirstName, userLastName, setUserLastName } = useContext(LoginStateContext);
   const accounts = useContext(AccountsDataContext);
-
   const [editMode, setEditMode] = useState(false);
+
 
   function handleClick() {
     setEditMode(true)
   }
 
-  function handleSubmit(event) {
+
+  async function handleSubmit(event) {
     const { firstname, lastname } = event.target
 
     event.preventDefault()
 
     if (firstname.value !== '') {
-      changeUserData(firstname.value, lastname.value)
-      setUserFirstName(firstname.value)
-      setUserLastName(lastname.value)
+      try {
+        await changeUserData(firstname.value, lastname.value)
+        setUserFirstName(firstname.value)
+        setUserLastName(lastname.value)
+      } catch ({response}) {
+        console.log(response)
+      }
     }
 
     setEditMode(false)
   }
 
+
   function handleCancel() {
     setEditMode(false)
   }
 
+  
   async function loadData() {
-    const response = await getUserData()
-    const { firstName, lastName } = response.data.body
-    if (response.status === 200) {
+    try {
+      const response = await getUserData()
+      const { firstName, lastName } = response.data.body
       setUserFirstName(firstName)
       setUserLastName(lastName)
+    } catch ({response}) {
+      console.log(response)
     }
   }
 

@@ -7,7 +7,7 @@ export function login(credentials) {
   return axios.post(loginURL, credentials)
 }
 
-export async function getUserData() {
+export function getUserData() {
   const userDataURL = 'http://localhost:3001/api/v1/user/profile'
   const token = getItem("token")
   const body = {};
@@ -15,11 +15,10 @@ export async function getUserData() {
     'Authorization': `Bearer ${token}`
   }
   
-  const response = await axios.post(userDataURL, body, { headers: headers })
-  return response
+  return axios.post(userDataURL, body, { headers: headers })
 }
 
-export async function changeUserData(userFirstName, userLastName) {
+export function changeUserData(userFirstName, userLastName) {
   const userDataURL = 'http://localhost:3001/api/v1/user/profile'
   const token = getItem("token")
   const body = {
@@ -30,8 +29,7 @@ export async function changeUserData(userFirstName, userLastName) {
     'Authorization': `Bearer ${token}`
   }
   
-  const response = await axios.put(userDataURL, body, { headers: headers })
-  return response
+  return axios.put(userDataURL, body, { headers: headers })
 }
 
 export function checkLoginStatus() {
