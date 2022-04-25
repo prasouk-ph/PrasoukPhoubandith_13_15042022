@@ -1,5 +1,6 @@
 import { createStore } from "redux";
 import { getItem } from "../services/LocaleStorage";
+import produce from "immer";
 
 
 function checkLoginStatus() {
@@ -37,28 +38,24 @@ const logOutAction = () => ({
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'setUserFirstNameAction': {
-      return {
-        ...state, // can't change directly an array
-        userFirstName: action.payload // the property that will be change and the new value
-      };
+      return produce(state, (draft) => {
+        draft.userFirstName = action.payload; // the property that will change and the new value
+      });
     }
     case 'setUserLastNameAction': {
-      return {
-        ...state,
-        userLastName: action.payload
-      };
+      return produce(state, (draft) => {
+        draft.userLastName = action.payload;
+      });
     }
     case 'logIn': {
-      return {
-        ...state,
-        isLogged: true
-      };
+      return produce(state, (draft) => {
+        draft.isLogged = true;
+      });
     }
     case 'logOut': {
-      return {
-        ...state,
-        isLogged: false
-      };
+      return produce(state, (draft) => {
+        draft.isLogged = false;
+      });
     }
     default:
       // If this reducer doesn't recognize the action type, or doesn't care about this specific action, return the existing state unchanged
