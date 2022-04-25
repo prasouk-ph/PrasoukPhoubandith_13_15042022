@@ -1,9 +1,9 @@
-import { LoginStateContext } from '../../App'
-import { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
+import { useSelector } from "react-redux";
+
 
 function ProtectedRoute({ children }) {
-  const { isLogged } = useContext(LoginStateContext)
+  const isLogged = useSelector((state) => state.isLogged);
 
   return (!isLogged ? (<Navigate to="/login" />)
     : (children)

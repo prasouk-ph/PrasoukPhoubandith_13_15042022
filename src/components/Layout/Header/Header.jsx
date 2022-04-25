@@ -3,19 +3,23 @@ import logo from '../../../assets/argentBankLogo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import './Header.css';
-import { LoginStateContext } from '../../../App';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { removeItem } from '../../../services/LocaleStorage'
 import { getUserData } from '../../../api/api'
+import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
 
 
 function Header() {
-  const { isLogged, setIsLogged, userFirstName, setUserFirstName, } = useContext(LoginStateContext);
+  const isLogged = useSelector((state) => state.isLogged);
+  const userFirstName = useSelector((state) => state.userFirstName);
+  const dispatch = useDispatch()
 
 
   function handleSignOut() {
     removeItem("token")
-    setIsLogged(false)
+    dispatch({ type: "logOut" })
+
   }
 
   
@@ -24,7 +28,7 @@ function Header() {
       try {
         const response = await getUserData()
         const { firstName } = response.data.body
-        setUserFirstName(firstName)
+        dispatch({ type: "setUserFirstNameAction", payload: firstName })
       } catch ({response}) {
         console.log(response)
       }

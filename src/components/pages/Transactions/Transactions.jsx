@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import './Transactions.css';
-import { AccountsDataContext } from '../../../App';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import TransactionTable from "./TransactionTable/TransactionTable";
+import { accounts } from '../../../data/accounts'
 
 const getData = () => [
   {
@@ -65,7 +65,7 @@ const getData = () => [
 function Transactions() {
   const { id } = useParams();
   let navigate = useNavigate()
-  const accounts = useContext(AccountsDataContext);
+
   const [dataIsValid, setDataIsValid] = useState(null)
 
   const currentAccount = accounts.filter(account => account.id === parseInt(id))[0]

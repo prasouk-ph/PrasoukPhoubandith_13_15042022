@@ -1,23 +1,28 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import Input from './Input/Input';
-import { LoginStateContext } from '../../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import './Login.css';
 import { addItem } from '../../../services/LocaleStorage'
 import { login } from "../../../api/api";
+import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
 
 export const FormContext = createContext('');
 
 function Login() {
   let navigate = useNavigate();
-  const { isLogged, setIsLogged } = useContext(LoginStateContext);
+
+  const isLogged = useSelector((state) => state.isLogged);
+  const dispatch = useDispatch()
+
+  const [loginFailure, setLoginFailure] = useState()
   const [formValue, setFormValue] = useState({
       email: '',
       password: ''
   });
-  const [loginFailure, setLoginFailure] = useState()
+  
 
   function handleFormChange(event) {
     const { name, value } = event.target;
@@ -39,12 +44,12 @@ function Login() {
       const token = response.data.body.token
 
       if (token) {
-        setIsLogged(true)
+        dispatch({ type: "logIn" })
+
         addItem("token", token)
         navigate("/user");
       }
     } catch ({response}) {
-      // if (response.status !== 200)
         console.log(response)
         setLoginFailure(true)
     }

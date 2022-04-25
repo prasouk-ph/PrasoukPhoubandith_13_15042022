@@ -1,14 +1,17 @@
 import Account from './Account/Account';
 import './User.css';
-import { LoginStateContext } from '../../../App';
-import { AccountsDataContext } from '../../../App';
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getUserData, changeUserData } from '../../../api/api'
+import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
+import { accounts } from '../../../data/accounts'
 
 function User() {
-  const { userFirstName, setUserFirstName, userLastName, setUserLastName } = useContext(LoginStateContext);
-  const accounts = useContext(AccountsDataContext);
   const [editMode, setEditMode] = useState(false);
+  
+  const userFirstName = useSelector((state) => state.userFirstName);
+  const userLastName = useSelector((state) => state.userLastName);
+  const dispatch = useDispatch()
 
 
   function handleClick() {
@@ -18,14 +21,15 @@ function User() {
 
   async function handleSubmit(event) {
     const { firstname, lastname } = event.target
+    console.log(firstname.value, lastname.value)
 
     event.preventDefault()
 
     if (firstname.value !== '') {
       try {
         await changeUserData(firstname.value, lastname.value)
-        setUserFirstName(firstname.value)
-        setUserLastName(lastname.value)
+        dispatch({ type: "setUserFirstNameAction", payload: firstname.value })
+        dispatch({ type: "setUserLastNameAction", payload: lastname.value })
       } catch ({response}) {
         console.log(response)
       }
@@ -44,8 +48,8 @@ function User() {
     try {
       const response = await getUserData()
       const { firstName, lastName } = response.data.body
-      setUserFirstName(firstName)
-      setUserLastName(lastName)
+      dispatch({ type: "setUserFirstNameAction", payload: firstName })
+      dispatch({ type: "setUserLastNameAction", payload: lastName })
     } catch ({response}) {
       console.log(response)
     }
@@ -54,7 +58,7 @@ function User() {
   useEffect(() => {
     loadData()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userFirstName])
+  }, [userFirstName, userLastName])
 
   return (
     <main className="user-main bg-dark">
