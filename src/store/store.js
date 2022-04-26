@@ -12,9 +12,13 @@ function checkLoginStatus() {
 }
 
 const initialState = {
-  userFirstName: "",
-  userLastName: "",
-  isLogged: checkLoginStatus()
+  user: {    
+    userFirstName: "",
+    userLastName: "",
+  },
+  login: {
+    isLogged: checkLoginStatus()
+  }
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -35,7 +39,7 @@ const logOutAction = () => ({
 });
 
 
-function reducer(state = initialState, action) {
+function userReducer(state, action) {
   switch (action.type) {
     case 'setUserFirstNameAction': {
       return produce(state, (draft) => {
@@ -47,6 +51,15 @@ function reducer(state = initialState, action) {
         draft.userLastName = action.payload;
       });
     }
+    default:
+      // If this reducer doesn't recognize the action type, or doesn't care about this specific action, return the existing state unchanged
+      return state
+  }
+}
+
+
+function loginReducer(state, action) {
+  switch (action.type) {
     case 'logIn': {
       return produce(state, (draft) => {
         draft.isLogged = true;
@@ -58,8 +71,15 @@ function reducer(state = initialState, action) {
       });
     }
     default:
-      // If this reducer doesn't recognize the action type, or doesn't care about this specific action, return the existing state unchanged
       return state
+  }
+}
+
+
+function reducer(state = initialState, action) {
+  return {
+    user: userReducer(state.user, action),
+    login: loginReducer(state.login, action)
   }
 }
 

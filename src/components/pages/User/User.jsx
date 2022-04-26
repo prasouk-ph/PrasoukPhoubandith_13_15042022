@@ -9,8 +9,8 @@ import { accounts } from '../../../data/accounts'
 function User() {
   const [editMode, setEditMode] = useState(false);
   
-  const userFirstName = useSelector((state) => state.userFirstName);
-  const userLastName = useSelector((state) => state.userLastName);
+  const userFirstName = useSelector((state) => state.user.userFirstName);
+  const userLastName = useSelector((state) => state.user.userLastName);
   const dispatch = useDispatch()
 
 

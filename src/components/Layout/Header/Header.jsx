@@ -11,8 +11,8 @@ import { useDispatch } from 'react-redux';
 
 
 function Header() {
-  const isLogged = useSelector((state) => state.isLogged);
-  const userFirstName = useSelector((state) => state.userFirstName);
+  const isLogged = useSelector((state) => state.login.isLogged);
+  const userFirstName = useSelector((state) => state.user.userFirstName);
   const dispatch = useDispatch()
 
 

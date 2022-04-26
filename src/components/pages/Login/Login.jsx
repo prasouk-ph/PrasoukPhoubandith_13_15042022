@@ -14,7 +14,7 @@ export const FormContext = createContext('');
 function Login() {
   let navigate = useNavigate();
 
-  const isLogged = useSelector((state) => state.isLogged);
+  const isLogged = useSelector((state) => state.login.isLogged);
   const dispatch = useDispatch()
 
   const [loginFailure, setLoginFailure] = useState()
