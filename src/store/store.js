@@ -1,6 +1,7 @@
 import { createStore } from "redux";
 import { getItem } from "../services/LocaleStorage";
 import produce from "immer";
+import { combineReducers } from "redux";
 
 
 function checkLoginStatus() {
@@ -11,11 +12,14 @@ function checkLoginStatus() {
   }
 }
 
-const initialState = {
+const userInitialState = {
   user: {    
     userFirstName: "",
     userLastName: "",
-  },
+  }
+}
+
+const loginInitialState = {
   login: {
     isLogged: checkLoginStatus()
   }
@@ -39,7 +43,7 @@ const logOutAction = () => ({
 });
 
 
-function userReducer(state, action) {
+function userReducer(state = userInitialState.user, action) {
   switch (action.type) {
     case 'setUserFirstNameAction': {
       return produce(state, (draft) => {
@@ -58,7 +62,7 @@ function userReducer(state, action) {
 }
 
 
-function loginReducer(state, action) {
+function loginReducer(state = loginInitialState.login, action) {
   switch (action.type) {
     case 'logIn': {
       return produce(state, (draft) => {
@@ -75,12 +79,9 @@ function loginReducer(state, action) {
   }
 }
 
-
-function reducer(state = initialState, action) {
-  return {
-    user: userReducer(state.user, action),
-    login: loginReducer(state.login, action)
-  }
-}
+const reducer = combineReducers({
+  user: userReducer,
+  login: loginReducer
+});
 
 export const store = createStore(reducer);
