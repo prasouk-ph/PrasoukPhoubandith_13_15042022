@@ -8,8 +8,10 @@ import { addItem } from '../../../services/LocaleStorage'
 import { login } from "../../../api/api";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
+import { logIn } from '../../../store/store'
 
 export const FormContext = createContext('');
+
 
 function Login() {
   let navigate = useNavigate();
@@ -44,7 +46,7 @@ function Login() {
       const token = response.data.body.token
 
       if (token) {
-        dispatch({ type: "logIn" })
+        dispatch(logIn())
 
         addItem("token", token)
         navigate("/user");

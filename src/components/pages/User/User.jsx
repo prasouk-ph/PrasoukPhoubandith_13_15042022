@@ -5,6 +5,8 @@ import { getUserData, changeUserData } from '../../../api/api'
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { accounts } from '../../../data/accounts'
+import { setUserFirstName, setUserLastName } from '../../../store/store'
+
 
 function User() {
   const [editMode, setEditMode] = useState(false);
@@ -21,15 +23,14 @@ function User() {
 
   async function handleSubmit(event) {
     const { firstname, lastname } = event.target
-    console.log(firstname.value, lastname.value)
 
     event.preventDefault()
 
     if (firstname.value !== '') {
       try {
         await changeUserData(firstname.value, lastname.value)
-        dispatch({ type: "setUserFirstNameAction", payload: firstname.value })
-        dispatch({ type: "setUserLastNameAction", payload: lastname.value })
+        dispatch(setUserFirstName(firstname.value))
+        dispatch(setUserLastName(lastname.value))
       } catch ({response}) {
         console.log(response)
       }
@@ -48,8 +49,8 @@ function User() {
     try {
       const response = await getUserData()
       const { firstName, lastName } = response.data.body
-      dispatch({ type: "setUserFirstNameAction", payload: firstName })
-      dispatch({ type: "setUserLastNameAction", payload: lastName })
+      dispatch(setUserFirstName(firstName))
+      dispatch(setUserLastName(lastName))
     } catch ({response}) {
       console.log(response)
     }

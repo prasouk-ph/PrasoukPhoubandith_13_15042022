@@ -8,6 +8,8 @@ import { removeItem } from '../../../services/LocaleStorage'
 import { getUserData } from '../../../api/api'
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
+import { logOut } from '../../../store/store'
+import { setUserFirstName } from '../../../store/store'
 
 
 function Header() {
@@ -18,8 +20,7 @@ function Header() {
 
   function handleSignOut() {
     removeItem("token")
-    dispatch({ type: "logOut" })
-
+    dispatch(logOut())
   }
 
   
@@ -28,7 +29,7 @@ function Header() {
       try {
         const response = await getUserData()
         const { firstName } = response.data.body
-        dispatch({ type: "setUserFirstNameAction", payload: firstName })
+        dispatch(setUserFirstName(firstName))
       } catch ({response}) {
         console.log(response)
       }

@@ -1,9 +1,11 @@
 import './Account.css';
 import { useNavigate } from "react-router-dom";
 
+
 function Account({ accountId, accountTitle, accountAmount, accountDescription }) {
   let navigate = useNavigate();
 
+  
   function handleClick() {
     navigate(`/transactions/${accountId}`);
   }

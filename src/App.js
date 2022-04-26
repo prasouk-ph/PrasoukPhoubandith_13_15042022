@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { createContext } from 'react'
 import Layout from './components/Layout/Layout'
 import Home from './components/pages/Home/Home'
 import Login from './components/pages/Login/Login'
@@ -9,8 +8,6 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Transactions from './components/pages/Transactions/Transactions'
 import { Provider } from "react-redux"; // on importe le Provider
 import { store } from './store/store'
-
-export const AccountsDataContext = createContext({});
 
 
 function App() {  

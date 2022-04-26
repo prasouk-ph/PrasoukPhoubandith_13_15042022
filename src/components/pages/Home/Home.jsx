@@ -4,6 +4,7 @@ import iconMoney from '../../../assets/icon-money.png'
 import iconSecurity from '../../../assets/icon-security.png'
 import './Home.css';
 
+
 function Home() {
   const features = [
     {

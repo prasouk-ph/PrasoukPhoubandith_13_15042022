@@ -1,7 +1,7 @@
-import { createStore } from "redux";
+import { configureStore } from '@reduxjs/toolkit'
+import { createAction } from '@reduxjs/toolkit'
+import { createReducer } from '@reduxjs/toolkit'
 import { getItem } from "../services/LocaleStorage";
-import produce from "immer";
-import { combineReducers } from "redux";
 
 
 function checkLoginStatus() {
@@ -25,63 +25,51 @@ const loginInitialState = {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
-const setUserFirstNameAction = (firstName) => ({
-  type: "setUserFirstName",
-  payload: {userFirstName: firstName}
+export const setUserFirstName = createAction(
+  'setUserFirstName',
+  (firstName) => ({
+    payload: { userFirstName: firstName }, // should be an object
+  })
+);
+
+export const setUserLastName = createAction(
+  'setUserLastName',
+  (lastName) => ({
+      payload: { userLastName: lastName },
+  })
+);
+
+export const logOut = createAction('logOut');
+
+export const logIn = createAction('logIn');
+
+const userReducer = createReducer(userInitialState.user, (builder) =>
+  builder
+    .addCase(setUserFirstName, (draft, action) => {
+      draft.userFirstName = action.payload.userFirstName
+      return
+    })
+    .addCase(setUserLastName, (draft, action) => {
+      draft.userLastName = action.payload.userLastName
+      return
+    })
+)
+
+const loginReducer = createReducer(loginInitialState.login, (builder) =>
+  builder
+    .addCase(logIn, (draft) => {
+      draft.isLogged = true
+      return
+    })
+    .addCase(logOut, (draft) => {
+      draft.isLogged = false
+      return
+    })
+)
+
+export const store = configureStore({
+  reducer : {
+      user: userReducer,
+      login: loginReducer,
+  },
 });
-
-// eslint-disable-next-line no-unused-vars
-const setUserLastNameAction = (lastName) => ({
-  type: "setUserLastName",
-  payload: {userLastName: lastName}
-});
-
-// eslint-disable-next-line no-unused-vars
-const logOutAction = () => ({
-  type: "logOut"
-});
-
-
-function userReducer(state = userInitialState.user, action) {
-  switch (action.type) {
-    case 'setUserFirstNameAction': {
-      return produce(state, (draft) => {
-        draft.userFirstName = action.payload; // the property that will change and the new value
-      });
-    }
-    case 'setUserLastNameAction': {
-      return produce(state, (draft) => {
-        draft.userLastName = action.payload;
-      });
-    }
-    default:
-      // If this reducer doesn't recognize the action type, or doesn't care about this specific action, return the existing state unchanged
-      return state
-  }
-}
-
-
-function loginReducer(state = loginInitialState.login, action) {
-  switch (action.type) {
-    case 'logIn': {
-      return produce(state, (draft) => {
-        draft.isLogged = true;
-      });
-    }
-    case 'logOut': {
-      return produce(state, (draft) => {
-        draft.isLogged = false;
-      });
-    }
-    default:
-      return state
-  }
-}
-
-const reducer = combineReducers({
-  user: userReducer,
-  login: loginReducer
-});
-
-export const store = createStore(reducer);
