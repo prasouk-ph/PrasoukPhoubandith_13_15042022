@@ -1,15 +1,7 @@
 import './Account.css';
-import { useNavigate } from "react-router-dom";
 
 
 function Account({ accountId, accountTitle, accountAmount, accountDescription }) {
-  let navigate = useNavigate();
-
-  
-  function handleClick() {
-    navigate(`/transactions/${accountId}`);
-  }
-
   return (
     <section className="account">
       <div className="account-content-wrapper">
@@ -19,7 +11,7 @@ function Account({ accountId, accountTitle, accountAmount, accountDescription })
       </div>
       
       <div className="account-content-wrapper cta">
-        <button className="transaction-button" onClick={handleClick}>View transactions</button>
+        <button className="transaction-button">View transactions</button>
       </div>
     </section>
   );

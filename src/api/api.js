@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getItem } from "../services/LocaleStorage";
+import { getItem, removeItem } from "../services/LocaleStorage";
 
 axios.interceptors.request.use(request => {
   const token = getItem("token")
@@ -9,6 +9,16 @@ axios.interceptors.request.use(request => {
 
   return request;
   }, error => {
+    return Promise.reject(error);
+});
+
+axios.interceptors.response.use(response => {
+  return response;
+  }, error => {
+    if (error.response.status === 401) {
+      removeItem("token")
+      window.location.href = '/login';
+    }
     return Promise.reject(error);
 });
 

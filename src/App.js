@@ -5,7 +5,6 @@ import Login from './components/pages/Login/Login'
 import User from './components/pages/User/User'
 import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
-import Transactions from './components/pages/Transactions/Transactions'
 import { Provider } from "react-redux"; // on importe le Provider
 import { store } from './store/store'
 
@@ -21,12 +20,6 @@ function App() {
                 <Route path="/user" element={
                   <ProtectedRoute>
                     <User />
-                  </ProtectedRoute>
-                  }
-                />
-                <Route path="/transactions/:id" element={
-                  <ProtectedRoute>
-                    <Transactions />
                   </ProtectedRoute>
                   }
                 />
