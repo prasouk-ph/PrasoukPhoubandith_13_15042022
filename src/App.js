@@ -13,19 +13,19 @@ function App() {
   return (
     <Router>
       <Provider store={store}>
-            <Routes>     
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/user" element={
-                  <ProtectedRoute>
-                    <User />
-                  </ProtectedRoute>
-                  }
-                />
-                <Route path="*" element={<NotFoundPage />} />
-              </Route>
-            </Routes>
+        <Routes>     
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/user" element={
+              <ProtectedRoute>
+                <User />
+              </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
       </Provider>
     </Router>
   );
