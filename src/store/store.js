@@ -14,8 +14,8 @@ function checkLoginStatus() {
 
 const userInitialState = {
   user: {    
-    userFirstName: "",
-    userLastName: "",
+    userFirstName: "Steve",
+    userLastName: "Rogers",
   }
 }
 

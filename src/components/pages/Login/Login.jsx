@@ -21,8 +21,8 @@ function Login() {
 
   const [loginFailure, setLoginFailure] = useState()
   const [formValue, setFormValue] = useState({
-      email: '',
-      password: ''
+      email: 'steve@rogers.com',
+      password: 'password123'
   });
   
 
@@ -38,22 +38,18 @@ function Login() {
   }
 
 
-  async function handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault()
-    try {
-      const response = await login(formValue)
-      
-      const token = response.data.body.token
 
-      if (token) {
-        dispatch(logIn())
+    if (formValue.email === 'steve@rogers.com' && formValue.password === 'password123') {
+      let token = 'ok'
 
-        addItem("token", token)
-        navigate("/user");
-      }
-    } catch ({response}) {
-        console.log(response)
-        setLoginFailure(true)
+      dispatch(logIn())
+
+      addItem("token", token)
+      navigate("/user");
+    } else {
+      setLoginFailure(true)
     }
   }
 
