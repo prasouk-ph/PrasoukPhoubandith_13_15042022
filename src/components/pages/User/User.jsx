@@ -1,7 +1,7 @@
 import Account from './Account/Account';
 import './User.css';
-import { useState, useEffect } from 'react';
-import { getUserData, changeUserData } from '../../../api/api'
+import { useEffect } from 'react';
+import { getUserData } from '../../../api/api'
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { accounts } from '../../../data/accounts'
@@ -9,40 +9,40 @@ import { setUserFirstName, setUserLastName } from '../../../store/store'
 
 
 function User() {
-  const [editMode, setEditMode] = useState(false);
+  // const [editMode, setEditMode] = useState(false);
   
   const userFirstName = useSelector((state) => state.user.userFirstName);
   const userLastName = useSelector((state) => state.user.userLastName);
   const dispatch = useDispatch()
 
 
-  function handleClick() {
-    setEditMode(true)
-  }
+  // function handleClick() {
+  //   setEditMode(true)
+  // }
 
 
-  async function handleSubmit(event) {
-    const { firstname, lastname } = event.target
+  // async function handleSubmit(event) {
+  //   const { firstname, lastname } = event.target
 
-    event.preventDefault()
+  //   event.preventDefault()
 
-    if (firstname.value !== '') {
-      try {
-        await changeUserData(firstname.value, lastname.value)
-        dispatch(setUserFirstName(firstname.value))
-        dispatch(setUserLastName(lastname.value))
-      } catch ({response}) {
-        console.log(response)
-      }
-    }
+  //   if (firstname.value !== '') {
+  //     try {
+  //       await changeUserData(firstname.value, lastname.value)
+  //       dispatch(setUserFirstName(firstname.value))
+  //       dispatch(setUserLastName(lastname.value))
+  //     } catch ({response}) {
+  //       console.log(response)
+  //     }
+  //   }
 
-    setEditMode(false)
-  }
+  //   setEditMode(false)
+  // }
 
 
-  function handleCancel() {
-    setEditMode(false)
-  }
+  // function handleCancel() {
+  //   setEditMode(false)
+  // }
 
 
   async function loadData() {
@@ -66,7 +66,7 @@ function User() {
       <div className="header">
         <h1>Welcome back<br />{`${userFirstName} ${userLastName}`} !</h1>
 
-        {editMode ?
+        {/* {editMode ?
           <form className='name-edit' onSubmit={handleSubmit}>
             <div className="input-container">
               <input className='name-edit-input' type="text" name='firstname' placeholder={userFirstName} />
@@ -79,7 +79,7 @@ function User() {
             </div>
           </form>
           : <button className="edit-button" onClick={handleClick}>Edit Name</button>
-        }
+        } */}
       </div>
 
       <h2 className="sr-only">Accounts</h2>
